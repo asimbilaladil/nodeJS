@@ -3,7 +3,8 @@ main = module.exports = {};
 main.setup = function(app) {
 
   "use strict"
-
+  // Course
+  var Course = require(__dirname + '/../models/Course');
 
     app.get('/', function (req, res) {
       res.render('index', {weather: null, error: null});
@@ -27,6 +28,29 @@ main.setup = function(app) {
         }
       });
     })
+
+
+  app.get('/testDB', function (req, res) {
+
+      Course.findOne({
+                id: courseId
+              }, function(err, c) {
+                if (err) {
+                  logger.error(JSON.stringify(err));
+                  responseJSON.status = 'FAIL';
+                  responseJSON.message = JSON.stringify(err);
+                  // Response to client.
+                  res.status(HTTP.INTERNAL_SERVER_ERROR).jsonp(responseJSON);
+                  return;
+                }
+
+                if (c) {
+                  res.render('index', {weather: "DB TEST WORKS", error: null});
+                }
+      });
+
+
+  })
 
 
 }

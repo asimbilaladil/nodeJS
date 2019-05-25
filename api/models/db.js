@@ -6,6 +6,9 @@
 var config = {};
 config.rollbar = {};
 config.rollbar.POST_SERVER_ITEM_ACCESS_TOKEN = '1725123a8ee84d27b6a1865d56554721'; 
+// Db Configuration
+config.db = {}
+config.db.host = 'mongodb://:@localhost:27017/nodeJS';
 var rollbar = require('rollbar');
 rollbar.init(config.rollbar.POST_SERVER_ITEM_ACCESS_TOKEN);
 // Reference to the module to be exported
