@@ -1,0 +1,22 @@
+{
+  "name": "Node App",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Asim Bilal",
+
+  "homepage": "localhost:3000",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "connect-mongo": "0.8.0",
+    "ejs": "^2.6.1",
+    "express": "^4.17.0",
+    "mongodb": "2.0.42",
+    "mongoose": "4.1.3",
+    "request": "^2.88.0"
+  }
+}
