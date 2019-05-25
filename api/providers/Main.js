@@ -5,6 +5,8 @@ main.setup = function(app) {
   "use strict"
   // Course
   var Course = require(__dirname + '/../models/Course');
+  var HTTP = require(__dirname + '/../../http-response');
+
 
     app.get('/', function (req, res) {
       res.render('index', {weather: null, error: null});
@@ -31,12 +33,14 @@ main.setup = function(app) {
 
 
   app.get('/testDB', function (req, res) {
-
+      var responseJSON = {}
       Course.findOne({
-                id: courseId
+                courseId: 1
               }, function(err, c) {
+
+                console.log("I AM HERE");
                 if (err) {
-                  logger.error(JSON.stringify(err));
+                  console.log("I AM HERE err");
                   responseJSON.status = 'FAIL';
                   responseJSON.message = JSON.stringify(err);
                   // Response to client.
@@ -45,7 +49,11 @@ main.setup = function(app) {
                 }
 
                 if (c) {
-                  res.render('index', {weather: "DB TEST WORKS", error: null});
+                  console.log("I AM HERE data");
+                    responseJSON.status = 'OK';
+                    res.status(HTTP.OK).jsonp(responseJSON);
+                    return;
+                  //res.render('index', {weather: "DB TEST WORKS", error: null});
                 }
       });
 
