@@ -1,7 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
-const app = express()
+const app = express();
+
+const mongoose = require('mongoose'); 
+mongoose.connect('mongodb://localhost/starter', {useNewUrlParser: true});
 
 const apiKey = '*****************';
 

@@ -32,31 +32,23 @@ main.setup = function(app) {
     })
 
 
-  app.get('/testDB', function (req, res) {
+  app.get('/test/db', function (req, res) {
       var responseJSON = {}
-      Course.findOne({
-                courseId: 1
-              }, function(err, c) {
 
-                console.log("I AM HERE");
-                if (err) {
-                  console.log("I AM HERE err");
-                  responseJSON.status = 'FAIL';
-                  responseJSON.message = JSON.stringify(err);
-                  // Response to client.
-                  res.status(HTTP.INTERNAL_SERVER_ERROR).jsonp(responseJSON);
-                  return;
-                }
+      var responseJSON = {}
+      Course.find(function(err, data) {
 
-                if (c) {
-                  console.log("I AM HERE data");
-                    responseJSON.status = 'OK';
-                    res.status(HTTP.OK).jsonp(responseJSON);
-                    return;
-                  //res.render('index', {weather: "DB TEST WORKS", error: null});
-                }
+          if (err) {
+            res.send(err);
+            return;
+          }
+          
+          responseJSON.data = data;
+          responseJSON.success = true;
+          res.status(HTTP.OK).jsonp(responseJSON);
+          return;
+
       });
-
 
   })
 
